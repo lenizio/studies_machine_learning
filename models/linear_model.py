@@ -59,25 +59,3 @@ def zscore_normalize_features(X):
     return X_norm    
 
     
-diabetes= pd.read_csv(r"/home/lenizio/datascience/diabetes_project/data/diabetes_filtered.csv")
-X = X = zscore_normalize_features(diabetes.Insulin.values)
-Y = diabetes.Glucose.values
-    
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 1/3, random_state = 0 )
-    
-model = Linear_Regression( iterations = 1000, learning_rate = 0.01 ) 
-
-Y_predc=model.predict(X_test)
-
-fig, ax =  plt.subplots()
-ax.scatter(X_train,Y_train)
-ax.plot(X_test,Y_predc, color="r")
-
-
-reg = LinearRegression()
-reg.fit(X_train,Y_train)
-Y_sklearn = reg.predict(X_test.reshape(-1,1))
-
-fig, ax =  plt.subplots()
-ax.scatter(X_train,Y_train)
-ax.plot(X_test,Y_sklearn, color="r")

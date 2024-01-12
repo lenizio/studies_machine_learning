@@ -59,10 +59,5 @@ def zscore_normalize_features(X):
     return X_norm    
 
     
-diabetes= pd.read_csv(r"/home/lenizio/datascience/diabetes_project/data/diabetes_filtered.csv")
-    
-X = X = zscore_normalize_features(diabetes.iloc[:,4:6].values)
-Y = diabetes.Glucose.values
-    
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 1/3, random_state = 0 )
+
     

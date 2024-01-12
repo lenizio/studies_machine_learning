@@ -2,8 +2,11 @@ import numpy as np
 import pandas as pd 
 from sklearn.model_selection import train_test_split  
 import matplotlib.pyplot as plt 
+import seaborn as sns
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
+
+
 
 
 class Polynomial_Regression() : 
@@ -73,19 +76,4 @@ def zscore_normalize_features(X):
     return X_norm    
 
     
-diabetes= pd.read_csv(r"/home/lenizio/datascience/diabetes_project/data/diabetes_filtered.csv")
     
-X = zscore_normalize_features(diabetes.iloc[:,4].values)
-X = X.astype(np.float128)
-Y = diabetes.Glucose.values
-    
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 1/3, random_state = 0 )  
-model = Polynomial_Regression( iterations = 1000, learning_rate = 0.01, degrees=[2,3])
-poly_features = PolynomialFeatures(degree=[2,3])
-model.fit(X_train,Y_train)
-
-x_test= model.x_transform(X_test, [2,3])
-
-y=model.predict(x_test)
-
-plt.plot(np.arange(0,1000), model.cost_history)

@@ -77,26 +77,7 @@ def zscore_normalize_features(X):
 
     return X_norm    
 
+
+
+
     
-diabetes= pd.read_csv(r"/home/lenizio/datascience/diabetes_project/data/diabetes_filtered.csv")
-    
-X = zscore_normalize_features(diabetes.iloc[:,4].values)
-X = X.astype(np.longdouble)
-Y = diabetes.Glucose.values
-    
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 1/3, random_state = 0 )  
-model = Polynomial_Regression( iterations = 10000, learning_rate = 0.0005, degrees=[2,3,4],lambda_=1/2)
-model.fit(X_train,Y_train)
-
-x_test= model.x_transform(X_test, [2,3,4])
-
-y=model.predict(x_test)
-
-plt.plot(np.arange(0,100000), model.cost_history)
-plt.plot(X_test,y)
-
-poly_features = PolynomialFeatures(degree=[1,4],include_bias=False)        
-x_poly = poly_features.fit_transform(X_train.reshape(-1,1))
-reg = LinearRegression()
-reg.fit(x_poly,Y_train)
-
