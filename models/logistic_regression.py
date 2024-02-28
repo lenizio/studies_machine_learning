@@ -62,7 +62,7 @@ class Logistic_Regression() :
     def predict( self, X ) : 
         
         pred = self.calculate_fwb(X)
-        pred = np.where(pred>=0.2, 1, 0)
+        pred = np.where(pred>=0.5, 1, 0)
     
         return pred 
     
@@ -76,7 +76,6 @@ def zscore_normalize_features(X):
     return X_norm    
 
     
-
 
 
 
